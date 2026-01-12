@@ -78,7 +78,7 @@ const Hero = () => {
             className="grid grid-cols-3 gap-8 mt-16 pt-16 border-t border-primary-foreground/10"
           >
             <div className="text-center">
-              <div className="font-serif text-3xl md:text-4xl font-bold text-copper">10+</div>
+              <div className="font-serif text-3xl md:text-4xl font-bold text-copper">15+</div>
               <div className="text-primary-foreground/70 text-sm mt-1">Years Experience</div>
             </div>
             <div className="text-center">

@@ -6,7 +6,9 @@ import project1 from "@/assets/project-1.jpeg";
 import project2 from "@/assets/project-2.jpeg";
 import project3 from "@/assets/project-3.jpeg";
 import project4 from "@/assets/project-4.jpeg";
-import projectVideo from "@/assets/project-video.mp4";
+import projectVideo1 from "@/assets/project-video.mp4";
+import projectVideo2 from "@/assets/project-video-2.mp4";
+import projectVideo3 from "@/assets/project-video-3.mp4";
 
 const projects = [
   {
@@ -35,8 +37,26 @@ const projects = [
   }
 ];
 
+const projectVideos = [
+  {
+    video: projectVideo1,
+    title: "3D Visualization 4K Reality - Project 1",
+    description: "Immersive walkthrough of our architectural designs"
+  },
+  {
+    video: projectVideo2,
+    title: "3D Visualization 4K Reality - Project 2",
+    description: "Detailed construction progress documentation"
+  },
+  {
+    video: projectVideo3,
+    title: "3D Visualization 4K Reality - Project 3",
+    description: "Complete project visualization in stunning 4K"
+  }
+];
+
 const Projects = () => {
-  const [videoPlaying, setVideoPlaying] = useState(false);
+  const [playingVideo, setPlayingVideo] = useState<number | null>(null);
 
   return (
     <section id="projects" className="py-24 bg-background">
@@ -49,10 +69,10 @@ const Projects = () => {
         >
           <span className="text-copper font-medium tracking-widest uppercase text-sm">Our Portfolio</span>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
-            Featured Projects
+            3D Visualization 4K Reality
           </h2>
           <p className="text-muted-foreground text-lg">
-            Explore our completed and ongoing construction projects across Kitengela and Kajiado County
+            Experience our completed and ongoing construction projects in stunning 4K visualization across Kitengela and Kajiado County
           </p>
         </motion.div>
 
@@ -91,40 +111,46 @@ const Projects = () => {
         </div>
 
         {/* Video Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative rounded-2xl overflow-hidden shadow-strong"
-        >
-          <div className="aspect-video bg-primary relative">
-            <video
-              src={projectVideo}
-              className="w-full h-full object-cover"
-              controls={videoPlaying}
-              playsInline
-              onClick={() => setVideoPlaying(true)}
-            />
-            {!videoPlaying && (
-              <div 
-                className="absolute inset-0 flex items-center justify-center bg-primary/40 cursor-pointer group"
-                onClick={() => setVideoPlaying(true)}
-              >
-                <div className="w-20 h-20 bg-copper rounded-full flex items-center justify-center shadow-copper group-hover:scale-110 transition-transform duration-300">
-                  <Play className="w-8 h-8 text-accent-foreground ml-1" />
-                </div>
-                <div className="absolute bottom-8 left-8">
-                  <span className="bg-copper text-accent-foreground px-3 py-1 rounded-full text-xs font-medium">
-                    Video Tour
-                  </span>
-                  <h3 className="font-serif text-2xl font-semibold text-primary-foreground mt-2">
-                    Construction Progress Video
-                  </h3>
-                </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {projectVideos.map((videoItem, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="relative rounded-2xl overflow-hidden shadow-strong"
+            >
+              <div className="aspect-video bg-primary relative">
+                <video
+                  src={videoItem.video}
+                  className="w-full h-full object-cover"
+                  controls={playingVideo === index}
+                  playsInline
+                  onClick={() => setPlayingVideo(index)}
+                />
+                {playingVideo !== index && (
+                  <div 
+                    className="absolute inset-0 flex items-center justify-center bg-primary/40 cursor-pointer group"
+                    onClick={() => setPlayingVideo(index)}
+                  >
+                    <div className="w-16 h-16 bg-copper rounded-full flex items-center justify-center shadow-copper group-hover:scale-110 transition-transform duration-300">
+                      <Play className="w-6 h-6 text-accent-foreground ml-1" />
+                    </div>
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <span className="bg-copper text-accent-foreground px-2 py-1 rounded-full text-xs font-medium">
+                        4K Video
+                      </span>
+                      <h3 className="font-serif text-sm md:text-base font-semibold text-primary-foreground mt-2 line-clamp-2">
+                        {videoItem.title}
+                      </h3>
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        </motion.div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
