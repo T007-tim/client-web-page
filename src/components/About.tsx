@@ -11,22 +11,6 @@ const About = () => {
     "Competitive Pricing"
   ];
 
-  const teamMembers = [
-    {
-      name: "Kennedy Mwau Wambua",
-      role: "Construction Architect",
-      initials: "KM",
-      email: "kennedywambua@gmail.com",
-      focus: "Architectural Design & Construction"
-    },
-    {
-      name: "Timothy Mulwa",
-      role: "Task Lead",
-      initials: "TM",
-      email: "mulwamwau0@gmail.com",
-      focus: "Organization Management"
-    }
-  ];
 
   return (
     <section id="about" className="py-24 bg-stone-warm">
@@ -73,39 +57,36 @@ const About = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative space-y-6"
+            className="relative"
           >
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-                className="bg-primary rounded-2xl p-6 shadow-strong"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-16 h-16 bg-copper rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="font-serif text-xl font-bold text-accent-foreground">{member.initials}</span>
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-xl font-bold text-primary-foreground">{member.name}</h3>
-                    <p className="text-copper">{member.role}</p>
-                  </div>
+            <div className="bg-primary rounded-2xl p-8 shadow-strong">
+              <div className="text-center mb-8">
+                <div className="w-24 h-24 bg-copper rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="font-serif text-3xl font-bold text-accent-foreground">KM</span>
                 </div>
-                
-                <div className="space-y-2 text-primary-foreground/80 text-sm">
-                  <div className="flex justify-between py-2 border-b border-primary-foreground/10">
-                    <span>Email</span>
-                    <a href={`mailto:${member.email}`} className="text-copper hover:underline">{member.email}</a>
-                  </div>
-                  <div className="flex justify-between py-2">
-                    <span>Focus</span>
-                    <span className="text-primary-foreground font-medium">{member.focus}</span>
-                  </div>
+                <h3 className="font-serif text-2xl font-bold text-primary-foreground">Kennedy Mwau Wambua</h3>
+                <p className="text-copper mt-1">Construction Architect</p>
+              </div>
+              
+              <div className="space-y-4 text-primary-foreground/80">
+                <div className="flex justify-between py-3 border-b border-primary-foreground/10">
+                  <span>Profession</span>
+                  <span className="text-primary-foreground font-medium">Construction Architect</span>
                 </div>
-              </motion.div>
-            ))}
+                <div className="flex justify-between py-3 border-b border-primary-foreground/10">
+                  <span>Experience</span>
+                  <span className="text-primary-foreground font-medium">15+ Years</span>
+                </div>
+                <div className="flex justify-between py-3 border-b border-primary-foreground/10">
+                  <span>Location</span>
+                  <span className="text-primary-foreground font-medium">Kitengela, Kajiado</span>
+                </div>
+                <div className="flex justify-between py-3">
+                  <span>Focus</span>
+                  <span className="text-primary-foreground font-medium">Residential & Commercial</span>
+                </div>
+              </div>
+            </div>
 
             {/* Decorative elements */}
             <div className="absolute -top-4 -right-4 w-24 h-24 bg-copper/20 rounded-full blur-2xl" />
